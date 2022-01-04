@@ -32,7 +32,7 @@ example of implementation pass some text in this dialog
 [!alt text](assets/demo.gif)
 
 
-In the button
+In the button you need code like this
 ```
  MaterialButton(
               color: Colors.blue,
