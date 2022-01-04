@@ -29,7 +29,7 @@ example of implementation pass some text in this dialog
 
 ```
 
-(assets/demo.gif)
+![alt text](assets/demo.gif)
 
 
 In the button you need code like this
