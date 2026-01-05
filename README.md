@@ -3,27 +3,34 @@
 [![Pub Version](https://img.shields.io/pub/v/simple_dialogs_flutter?color=blue&logo=dart)](https://pub.dev/packages/simple_dialogs_flutter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Simple Dialogs Flutter** is a premium, context-less overlay system for Flutter. It provides a stunning **Liquid Glass** aesthetic (glassmorphism) with fluid, physics-based animations that make your app feel like iOS 18+.
+Simple Dialogs Flutter is a professional context-less overlay system for Flutter applications. It provides a sophisticated Liquid Glass aesthetic (glassmorphism) powered by physics-based animations and a clean, layered architecture.
 
 ![Demo](assets/demo.gif)
 
-## 🚀 Key Features
+## Core Features
 
-- **Context-less API**: Trigger dialogs, toasts, and loaders from anywhere (even from business logic or services) without passing `BuildContext`.
-- **Liquid Glass UI**: Beautiful backdrop blur, vibrant tints, and procedural glass effects.
-- **Physics-Based Animations**: Fluid elastic motions and spring-driven transitions.
-- **Positional Toasts**: Align toasts to the **Top** or **Bottom** of the screen.
-- **Animated Progress Bars**: Visual countdown timers for toasts.
-- **Dual-Action Dialogs**: Support for Primary and Secondary actions with custom callbacks.
-- **Granular Customization**: Control blur intensity, opacity, and border radius via `GlassStyle`.
+### Context-less API
+The package utilizes a GlobalKey-based Navigator state to manage overlays. This allows developers to trigger dialogs, toasts, and loading indicators from anywhere in the application—including repositories, services, or business logic—without the need to pass a BuildContext through every layer.
+
+### Liquid Glass Design System
+The UI is built on a custom glassmorphism implementation that combines BackdropFilter, procedural blurs, and vibrant opacity-based tinting. This creates a depth-aware interface that adapts to the background content of your application while maintaining high legibility.
+
+### Physics-Based Animations
+Transitions are driven by custom AnimationControllers using Curves.elasticOut and spring-simulated curves. This ensures that every entry and exit feels fluid and responsive, avoiding the static feel of traditional modal transitions.
+
+### Positional Toast System
+Toasts support dynamic alignment to the top or bottom of the viewport. The system automatically calculates safe area offsets and reverses sliding directions based on the chosen position to maintain visual consistency.
+
+### Advanced Customization
+Every component is highly configurable through the GlassStyle and Config models, allowing for granular control over aesthetics and behavioral logic.
 
 ---
 
-## 📦 Getting Started
+## Technical Integration
 
 ### 1. Installation
 
-Add the dependency to your `pubspec.yaml`:
+Add the following to your pubspec.yaml:
 
 ```yaml
 dependencies:
@@ -32,7 +39,7 @@ dependencies:
 
 ### 2. Initialization
 
-Set the `navigatorKey` in your `MaterialApp` to enable context-less overlays:
+Configure the GlobalKey in your MaterialApp to enable context-less operations:
 
 ```dart
 import 'package:simple_dialogs_flutter/simple_dialogs_flutter.dart';
@@ -47,72 +54,75 @@ void main() {
 
 ---
 
-## 🛠 Usage
+## Detailed Usage Guide
 
-### 💬 Premium Dialog
-
-Show a professional glassmorphism dialog with dual actions:
+### Premium Dialogs
+The dialog system supports complex interactive flows with primary and secondary actions.
 
 ```dart
 SimpleDialogs.show(
-  title: 'Delete Item?',
-  description: 'Are you sure you want to permanently delete this file?',
-  primaryActionLabel: 'Delete',
+  title: 'Delete Confirmation',
+  description: 'This operation is permanent. Are you sure you wish to proceed?',
+  primaryActionLabel: 'Confirm Delete',
   secondaryActionLabel: 'Cancel',
-  onPrimaryAction: () => print('Deleted'),
-  onSecondaryAction: () => print('Cancelled'),
+  onPrimaryAction: () => _handleDelete(),
+  onSecondaryAction: () => _handleCancel(),
+  barrierDismissible: false, // Prevent closing by tapping outside
+  style: GlassStyle(blur: 20.0, borderRadius: 24.0),
 );
 ```
 
-### 🍞 Smart Toast
-
-Display a sleek pill-shaped toast at the top or bottom:
+### Advanced Toasts
+Toasts are pill-shaped overlays with built-in status icons and optional visual progress timers.
 
 ```dart
 SimpleDialogs.toast(
-  message: 'Settings updated successfully!',
+  message: 'Operation was successful',
   type: ToastType.success,
-  position: OverlayPosition.top, // Optional: top or bottom
-  showProgressBar: true,         // Optional: visual timer
+  position: OverlayPosition.top,
+  showProgressBar: true,
+  duration: Duration(seconds: 4),
+  style: GlassStyle(
+    backgroundOpacity: 0.15,
+    borderOpacity: 0.25,
+  ),
 );
 ```
 
-### ⏳ Loader
-
-Trigger a non-dismissible glass loader:
+### Global Loaders
+A non-dismissible glass-styled loading indicator for blocking UI operations during async tasks.
 
 ```dart
-SimpleDialogs.loading(message: 'Syncing data...');
+// Start loader
+SimpleDialogs.loading(message: 'Processing Data...');
 
-// Close it when done
+// Dismiss when task is complete
 SimpleDialogs.dismiss();
 ```
 
 ---
 
-## 🎨 Advanced Customization
+## Customization Logic
 
-### The `GlassStyle` Object
+### The GlassStyle Specification
+The `GlassStyle` model allows developers to define a consistent design language across all overlays:
 
-Tweak the glass properties to match your brand:
-
-```dart
-SimpleDialogs.toast(
-  message: 'Custom Style',
-  style: GlassStyle(
-    blur: 25.0,
-    backgroundOpacity: 0.2,
-    borderOpacity: 0.3,
-    borderRadius: 12.0,
-  ),
-);
-```
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `blur` | double | 15.0 | The intensity of the BackdropFilter blur effect. |
+| `backgroundOpacity` | double | 0.1 | The alpha value of the container background. |
+| `borderOpacity` | double | 0.2 | The alpha value of the surrounding border. |
+| `borderRadius` | double | 50.0 | The corner radius (use higher values for pill shapes). |
 
 ---
 
-## 🌟 What Makes It Different?
+## Architectural Philosophy
+Simple Dialogs Flutter is built on a decoupled architecture located in `lib/src/`:
+- **Core Manager**: Handles the OverlayEntry lifecycle and queue management.
+- **Models**: Immutable configuration objects ensuring predictable state.
+- **Widgets**: Pure UI components that consume configuration models without internal business logic.
 
-Unlike most dialog packages, **Simple Dialogs Flutter** focuses on **High-End Aesthetics** and **Ease of Maintenance**. It hides the complexity of `OverlayEntry` management and `BackdropFilter` implementation behind a clean, readable API. It’s built for "Senior Developer" quality code with a clear separation between UI widgets and configuration models.
+This separation of concerns makes the package highly extensible and easy to maintain within large-scale production environments.
 
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## License
+Licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
