@@ -1,21 +1,21 @@
 name: simple_dialogs_flutter
-description: A new simple dialog flutter package which is impelemented easily
-version: 0.0.1
+description: A modern, context-less Liquid Glass dialog and toast system for Flutter with premium physics-based animations.
+version: 2.2.0
 homepage: https://github.com/umarKhan1/simple_dialogs_flutter.git
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^2.2.0
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
