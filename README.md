@@ -5,7 +5,7 @@
 
 Simple Dialogs Flutter is a professional context-less overlay system for Flutter applications. It provides a sophisticated Liquid Glass aesthetic (glassmorphism) powered by physics-based animations and a clean, layered architecture.
 
-![Demo](assets/demo.gif)
+![Demo](https://raw.githubusercontent.com/umarKhan1/simple_dialogs_flutter/main/assets/demo.gif)
 
 ## Core Features
 
@@ -34,7 +34,7 @@ Add the following to your pubspec.yaml:
 
 ```yaml
 dependencies:
-  simple_dialogs_flutter: ^2.2.0
+  simple_dialogs_flutter: ^2.2.1
 ```
 
 ### 2. Initialization

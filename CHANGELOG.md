@@ -1,3 +1,7 @@
+# 2.2.1
+
+* **Fix**: Updated README asset paths to use absolute raw GitHub URLs for better rendering on pub.dev.
+
 # 2.2.0
 
 * **Feature**: New "Liquid Glass" design system with advanced glassmorphism effects.

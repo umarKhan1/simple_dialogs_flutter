@@ -1,6 +1,6 @@
 name: simple_dialogs_flutter
 description: A modern, context-less Liquid Glass dialog and toast system for Flutter with premium physics-based animations.
-version: 2.2.0
+version: 2.2.1
 homepage: https://github.com/umarKhan1/simple_dialogs_flutter.git
 
 environment:
