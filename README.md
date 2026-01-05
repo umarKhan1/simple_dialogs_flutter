@@ -124,5 +124,20 @@ Simple Dialogs Flutter is built on a decoupled architecture located in `lib/src/
 
 This separation of concerns makes the package highly extensible and easy to maintain within large-scale production environments.
 
+---
+
+## 👨‍💻 Author
+
+Developed by **Muhammad Omar**. Passionate about creating premium UI experiences for the Flutter community.
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/umarKhan1)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhammad-omar-0335/)
+
+---
+
+## 🌟 Support & Contribution
+
+If you find this package helpful, please consider giving it a **Star** on [GitHub](https://github.com/umarKhan1/simple_dialogs_flutter)! Contributions, issues, and feature requests are always welcome.
+
 ## License
 Licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

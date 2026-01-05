@@ -4,14 +4,21 @@ import '../widgets/glass_dialog.dart';
 import '../widgets/loading_overlay.dart';
 import '../widgets/glass_toast.dart';
 
-/// Central manager for context-less overlays.
+/// The central access point for displaying context-less overlays.
+///
+/// Ensure that [navigatorKey] is assigned to your [MaterialApp.navigatorKey]
+/// during application initialization.
 class SimpleDialogs {
+  /// The global navigator key used to interact with the [Overlay] without a [BuildContext].
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
 
   static final List<OverlayEntry> _activeOverlays = [];
 
-  /// Shows a premium Liquid Glass dialog with advanced options.
+  /// Displays a premium Liquid Glass dialog on the screen.
+  ///
+  /// Provide a [title] and optional [description] or [content].
+  /// Supports dual actions via [primaryActionLabel] and [secondaryActionLabel].
   static void show({
     required String title,
     String? description,
@@ -44,7 +51,9 @@ class SimpleDialogs {
     _showOverlay(entry);
   }
 
-  /// Shows a non-dismissible loading overlay.
+  /// Displays a non-dismissible glass-styled loading overlay.
+  ///
+  /// Use this to indicate background processing. Call [dismiss] to remove it.
   static void loading({String message = 'Loading...'}) {
     final entry = OverlayEntry(
       builder: (context) => LoadingOverlay(message: message),
@@ -52,7 +61,10 @@ class SimpleDialogs {
     _showOverlay(entry);
   }
 
-  /// Displays a premium redesigned toast with advanced options.
+  /// Displays a premium pill-shaped glass toast.
+  ///
+  /// Toasts appear at the top or bottom of the screen and auto-dismiss after [duration].
+  /// Supports visual progress bars via [showProgressBar].
   static void toast({
     required String message,
     ToastType type = ToastType.info,
@@ -96,7 +108,7 @@ class SimpleDialogs {
     _activeOverlays.add(entry);
   }
 
-  /// Dismisses all active overlays.
+  /// Dismisses all currently active overlays managed by [SimpleDialogs].
   static void dismiss() {
     for (final entry in _activeOverlays) {
       entry.remove();
@@ -104,7 +116,7 @@ class SimpleDialogs {
     _activeOverlays.clear();
   }
 
-  /// Dismisses a specific overlay entry.
+  /// Dismisses a specific [OverlayEntry] if it is currently active.
   static void dismissEntry(OverlayEntry entry) {
     if (_activeOverlays.contains(entry)) {
       entry.remove();
